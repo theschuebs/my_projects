@@ -30,12 +30,7 @@ SQL
 db.execute(create_table_cmd)
 db.execute(create_table_2_cmd)
 
-
 #EXPLORE ORM BY RETREIVING DATA **ALWAYS CHECK THE CLASS TO KNOW WHAT YOUR DATATYPE IS!!
-
-
-
-
 
 students = db.execute("SELECT students.name, happy_meal.happy_meal FROM students, happy_meal 
 	WHERE students.happy_meal_id = happy_meal.id AND birthdate BETWEEN date('2005-01-01') AND date('2005-12-31');")
