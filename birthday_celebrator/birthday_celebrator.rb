@@ -56,7 +56,14 @@ students.each do |student|
 	puts "HAPPY BIRTHDAY #{student['name']}!! Your birthday lunch special: A #{student['happy_meal']} Happy Meal!"
 end
 
+# def current_age(birthdate)
+# SELECT julianday('now') - julianday('1776-07-04')
+# 	birthdate = birthdate.chars
+#   # now = Time.now.utc.to_date
+#   # now.year - birthdate.year - ((now.month > birthdate.month || (now.month == birthdate.month && now.day >= birthdate.day)) ? 0 : 1)
+# end
 
+# p current_age('1984-06-18')
 
 #Add students to the table
 	#RESEARCH DATE format
@@ -83,6 +90,11 @@ end
 #EXPLORE ORM BY RETREIVING DATA **ALWAYS CHECK THE CLASS TO KNOW WHAT YOUR DATATYPE IS!!
 	# students = db.execute("SELECT birthdate FROM students WHERE birthdate BETWEEN date('2005-01-01') AND date('2005-12-31');")
 	# p students
+	# SELECT * FROM students ORDER BY birthdate;
+	
+#TRIED GRABBING MONTH SPECIFIC DATES
+# 	sqlite> SELECT * FROM students WHERE birthdate = '%%%%-05-%%';
+# sqlite> SELECT * FROM students WHERE birthdate = '%-05-%';
 
 	# def create_student(db, name, birthdate)
 # 	db.execute("INSERT INTO students (name, birthdate) VALUES (?, ?, ?)", [name, birthdate])
