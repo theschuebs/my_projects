@@ -30,9 +30,6 @@ SQL
 db.execute(create_table_cmd)
 db.execute(create_table_2_cmd)
 
-students = db.execute("SELECT students.name, happy_meal.happy_meal FROM students, happy_meal 
-	WHERE students.happy_meal_id = happy_meal.id AND birthdate BETWEEN date('2005-01-01') AND date('2005-12-31');")
-
 
 def add_student(db, name, birthdate, happy_meal_id)
 	puts "Enter your name (first, last):"
@@ -46,16 +43,23 @@ def add_student(db, name, birthdate, happy_meal_id)
     VALUES (?, ?, ?)", [name, birthdate, happy_meal_id])
 end
 
-add_student(db, 'erika', '1984-06-18', 1)
+# add_student(db, 'erika', '1984-06-18', 1)
+
+p students = db.execute("SELECT students.name, happy_meal.happy_meal FROM students, happy_meal 
+	WHERE students.happy_meal_id = happy_meal.id AND birthdate BETWEEN date('1980-01-01') AND date('1985-12-31');")
 
 students = db.execute("SELECT students.name, happy_meal.happy_meal FROM students, happy_meal 
-	WHERE students.happy_meal_id = happy_meal.id AND birthdate BETWEEN date('1980-01-01') AND date('1988-12-31');")
+	WHERE students.happy_meal_id = happy_meal.id AND birthdate BETWEEN date('2005-01-01') AND date('2005-12-31');")
 
-# USER FRIENDLY FORMAT
-students.each do |student|
-	puts "HAPPY BIRTHDAY #{student['name']}!! Your birthday lunch special: A #{student['happy_meal']} Happy Meal!"
+month_students = db.execute("SELECT * FROM students WHERE strftime('%m', birthdate) = '02'")
+
+# FOR USER FRIENDLY FORMAT
+month_students.each do |student|
+	puts student['name']
 end
 
+
+##Calculate age for age column
 # def current_age(birthdate)
 # SELECT julianday('now') - julianday('1776-07-04')
 # 	birthdate = birthdate.chars
@@ -91,10 +95,7 @@ end
 	# students = db.execute("SELECT birthdate FROM students WHERE birthdate BETWEEN date('2005-01-01') AND date('2005-12-31');")
 	# p students
 	# SELECT * FROM students ORDER BY birthdate;
-	
-#TRIED GRABBING MONTH SPECIFIC DATES
-# 	sqlite> SELECT * FROM students WHERE birthdate = '%%%%-05-%%';
-# sqlite> SELECT * FROM students WHERE birthdate = '%-05-%';
+
 
 	# def create_student(db, name, birthdate)
 # 	db.execute("INSERT INTO students (name, birthdate) VALUES (?, ?, ?)", [name, birthdate])
