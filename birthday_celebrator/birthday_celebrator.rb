@@ -45,7 +45,7 @@ end
 
 # add_student(db, 'erika', '1984-06-18', 1)
 
-p students = db.execute("SELECT students.name, happy_meal.happy_meal FROM students, happy_meal 
+students = db.execute("SELECT students.name, happy_meal.happy_meal FROM students, happy_meal 
 	WHERE students.happy_meal_id = happy_meal.id AND birthdate BETWEEN date('1980-01-01') AND date('1985-12-31');")
 
 students = db.execute("SELECT students.name, happy_meal.happy_meal FROM students, happy_meal 
